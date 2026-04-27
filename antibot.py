@@ -48,17 +48,9 @@ def fetch_big_data():
 # --- 2. 模型推理 (二级缓存: 解决模型重复计算痛点) ---
 @st.cache_resource
 def load_model():
-    import os
-    # 1. 自动获取当前脚本所在的绝对路径：.../人机判断/Antibot/
-    pro_path = os.path.dirname(os.path.realpath(__file__))
-    
-    # 2. 自动拼接出模型文件的绝对路径
-    model_path = os.path.join(pro_path, 'antibot_pipeline_v1.pkl')
-    
-    # 3. 打印出来确认一下（你会看到它自动补全了那个缺失的 /Antibot/）
-    # print(f"DEBUG: 正在加载：{model_path}")
-    
-    return joblib.load(model_path)
+    import joblib
+    # 极简写法：直接读当前目录下的文件名
+    return joblib.load('antibot_pipeline_v1.pkl')
 
 @st.cache_data(show_spinner="🧠 正在对该时段数据进行高维特征提取与孤立森林预测...")
 def run_pipeline(df_subset):
