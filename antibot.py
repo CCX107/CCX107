@@ -48,7 +48,7 @@ def fetch_big_data():
 # --- 2. 模型推理 (二级缓存: 解决模型重复计算痛点) ---
 @st.cache_resource
 def load_model():
-    return joblib.load('/Users/qwe/Desktop/Stu/人机判断/antibot_pipeline_v1.pkl')
+    return joblib.load('./antibot_pipeline_v1.pkl')
 
 @st.cache_data(show_spinner="🧠 正在对该时段数据进行高维特征提取与孤立森林预测...")
 def run_pipeline(df_subset):
